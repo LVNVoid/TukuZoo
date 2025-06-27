@@ -12,8 +12,6 @@ const firebaseConfig = {
   measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 };
 
-console.log(firebaseConfig);
-
 // Initialize Firebase only if no apps already initialized
 const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 
