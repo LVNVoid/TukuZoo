@@ -9,7 +9,7 @@ import {
   where,
 } from "firebase/firestore";
 import app from "./init";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 const firestore = getFirestore(app);
 
