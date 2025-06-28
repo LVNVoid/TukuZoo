@@ -1,4 +1,4 @@
-import { signUp } from "@/services/auth";
+import { signUp } from "@/services/auth/services";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -17,7 +17,7 @@ export default async function handler(
         res.status(400).json({
           status: false,
           statusCode: 400,
-          message: "User registration failed",
+          message: "Email is already in use",
         });
       }
     });

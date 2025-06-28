@@ -1,4 +1,3 @@
-import Link from "next/link";
 import styles from "./Login.module.scss";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
@@ -6,6 +5,7 @@ import { signIn } from "next-auth/react";
 import { BiLogoGoogle } from "react-icons/bi";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
+import AuthLayout from "@/components/layouts/AuthLayout";
 
 const LoginView = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -44,38 +44,36 @@ const LoginView = () => {
   };
 
   return (
-    <div className={styles.login}>
-      <h1 className={styles.login__title}>Login</h1>
-      {error && <p className={styles.login__error}>{error}</p>}
-      <div className={styles.login__form}>
-        <form onSubmit={handleSubmit}>
-          <Input label="Email" name="email" type="email" />
-          <Input label="Password" name="password" type="password" />
-          <Button
-            type="submit"
-            variant="primary"
-            className={styles.login__form__button}
-          >
-            {isLoading ? "Loading..." : "Login"}
-          </Button>
-        </form>
-        <hr className={styles.login__form__divider} />
-        <div className={styles.login__form__other}>
-          <Button
-            type="button"
-            variant="primary"
-            onClick={() => signIn("google", { callbackUrl: "/" })}
-            className={styles.login__form__other__button}
-          >
-            <BiLogoGoogle />
-            Login with Google
-          </Button>
-        </div>
+    <AuthLayout
+      title="Login"
+      error={error}
+      link="/auth/register"
+      linkText="Don't have an account? Register "
+    >
+      <form onSubmit={handleSubmit}>
+        <Input label="Email" name="email" type="email" />
+        <Input label="Password" name="password" type="password" />
+        <Button
+          type="submit"
+          variant="primary"
+          className={styles.login__button}
+        >
+          {isLoading ? "Loading..." : "Login"}
+        </Button>
+      </form>
+      <hr className={styles.login__divider} />
+      <div className={styles.login__other}>
+        <Button
+          type="button"
+          variant="primary"
+          onClick={() => signIn("google", { callbackUrl: "/" })}
+          className={styles.login__other__button}
+        >
+          <BiLogoGoogle size={20} className={styles.login__other__icon} />
+          Login with Google
+        </Button>
       </div>
-      <p className={styles.login__link}>
-        Don&apos;t have an account? <Link href="/auth/register">Register</Link>
-      </p>
-    </div>
+    </AuthLayout>
   );
 };
 
