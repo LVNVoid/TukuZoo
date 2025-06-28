@@ -1,0 +1,13 @@
+.button {
+  padding: 15px 30px;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.primary {
+  background-color: #000;
+  color: #fff;
+}
