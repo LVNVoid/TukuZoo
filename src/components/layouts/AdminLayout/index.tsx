@@ -1,7 +1,7 @@
 import Sidebar from "@/components/fragments/Sidebar";
 import styles from "./AdminLayout.module.scss";
 import { MdSpaceDashboard } from "react-icons/md";
-import { FaBox } from "react-icons/fa6";
+import { FaBox, FaUserGroup } from "react-icons/fa6";
 
 type PropsType = {
   children: React.ReactNode;
@@ -18,6 +18,11 @@ const listSidebarItem = [
     url: "/admin/products",
     icon: <FaBox size={24} />,
   },
+  {
+    title: "Users",
+    url: "/admin/users",
+    icon: <FaUserGroup size={24} />,
+  },
 ];
 
 const AdminLayout = (props: PropsType) => {
@@ -25,7 +30,7 @@ const AdminLayout = (props: PropsType) => {
   return (
     <div className={styles.admin}>
       <Sidebar lists={listSidebarItem} />
-      {children}
+      <div className={styles.admin__main}>{children}</div>
     </div>
   );
 };
