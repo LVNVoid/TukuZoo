@@ -7,8 +7,11 @@ const headers = {
   Expires: 0,
 };
 
+const baseURL = process.env.NEXT_PUBLIC_API_URL;
+if (!baseURL) throw new Error("Base URL is not defined in .env");
+
 const instance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "https://tuku-zoo.vercel.app/api",
+  baseURL,
   headers,
   timeout: 60 * 1000,
 });
